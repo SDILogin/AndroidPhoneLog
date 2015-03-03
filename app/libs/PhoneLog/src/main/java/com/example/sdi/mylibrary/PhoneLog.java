@@ -53,7 +53,7 @@ public class PhoneLog {
      * set name of log file on sdCard.
      * @param logName: new name of logFile.
      * */
-    public void setLogName(String logName){
+    public static void setLogName(String logName){
         mLogFileName = logName;
     }
 

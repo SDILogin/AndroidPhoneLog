@@ -22,6 +22,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        PhoneLog.setLogName("SimpleLogFile.txt");
         log = PhoneLog.getInstance();
         log.append("activity cretead");
         if (savedInstanceState == null) {
@@ -60,7 +61,7 @@ public class MainActivity extends ActionBarActivity {
     public static class PlaceholderFragment extends Fragment implements View.OnClickListener{
 
         public PlaceholderFragment() {
-            PhoneLog.getInstance().append("placeholed created");
+            PhoneLog.getInstance().append("placeholder created");
         }
 
         @Override
