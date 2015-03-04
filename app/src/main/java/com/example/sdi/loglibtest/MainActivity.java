@@ -68,8 +68,20 @@ public class MainActivity extends ActionBarActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
             rootView.findViewById(R.id.id_button_clickme).setOnClickListener(this);
+            rootView.findViewById(R.id.id_button_change_log_and_save_prev).setOnClickListener(this);
+            rootView.findViewById(R.id.id_button_change_log_and_delete_prev).setOnClickListener(this);
+            rootView.findViewById(R.id.id_button_clear_folder).setOnClickListener(this);
+
+            PhoneLog.writeToNewNewLog("phone info.txt", false);
+            PhoneLog.getInstance().savePhoneSize(this.getActivity());
+            PhoneLog.getInstance().saveSDKVersion();
+            PhoneLog.getInstance().saveDevice();
+
+            PhoneLog.writeToNewNewLog("simple log.txt", false);
             PhoneLog.getInstance().append("onCreateView");
+
             return rootView;
         }
 
@@ -79,6 +91,16 @@ public class MainActivity extends ActionBarActivity {
             switch(id){
                 case R.id.id_button_clickme:
                     PhoneLog.getInstance().append("button clicked");
+                    break;
+                case R.id.id_button_change_log_and_save_prev:
+                    boolean deletePrev = false;
+                    PhoneLog.writeToNewNewLog("NewLog.txt", deletePrev);
+                    break;
+                case R.id.id_button_change_log_and_delete_prev:
+                    PhoneLog.writeToNewNewLog("NewLog2.txt", true);
+                    break;
+                case R.id.id_button_clear_folder:
+                    PhoneLog.clearLogFolder();
                     break;
             }
         }
